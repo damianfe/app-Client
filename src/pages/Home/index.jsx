@@ -1,7 +1,21 @@
+import { Link } from "react-router-dom";
+import useUser from "../../hooks/useUser";
 export default function Home () {
+
+     const {user,logout} = useUser();
     return (
         <div>
-            <h1>Home</h1>
+           {/*  <SearchForm/> */}
+           <h1>Home</h1>
+           <hr />
+           {user ?(
+            <>
+             <h2>hola {user}</h2>
+             <button onClick={logout()}>Salir</button>
+            </>
+           
+            ):(<Link to={"/login"}>Ingresa</Link> )}
+           
         </div>
     )
 }
