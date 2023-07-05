@@ -8,13 +8,16 @@ export default function Home () {
            {/*  <SearchForm/> */}
            <h1>Home</h1>
            <hr />
-           {user ?(
-            <>
-             <h2>hola {user}</h2>
-             <button onClick={logout()}>Salir</button>
-            </>
-           
-            ):(<Link to={"/login"}>Ingresa</Link> )}
+           {
+      user ? (
+        <>
+        <h2>Hola! {user}</h2>
+        <button onClick={() => logout()}>Salir</button>
+        </>
+      ) : (
+        <Link to={'/login'}>Ingresa</Link>
+      )
+    }
            
         </div>
     )
