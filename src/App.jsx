@@ -1,3 +1,4 @@
+import { CategoriesProvider } from "./context/CategoriesProvider"
 import { UserProvider } from "./context/UserProvider"
 import MainLayout from "./layout"
 import AppRoutes from "./routes"
@@ -6,11 +7,14 @@ function App() {
 
   return (
     <UserProvider>
-    <MainLayout>
-      <AppRoutes />     
-    </MainLayout>
+      <CategoriesProvider>
+        <MainLayout>
+          <AppRoutes />
+        </MainLayout>
+      </CategoriesProvider>
+
     </UserProvider>
-    
+
   )
 }
 
