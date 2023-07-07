@@ -2,24 +2,27 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import * as Yup from 'yup';
 import useCategories from '../../hooks/useCategories';
+import useDrinks from '../../hooks/useDrinks';
 
 export const SearchForm = () => {
 
   const { categories } = useCategories();
+  const {getDrink, loading} = useDrinks();
 
 
   const initialValues = {
-    name: "",
+    ingredient: "",
     category: ""
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string().required('El nombre es obligatorio'),
+    ingredient: Yup.string().required('El nombre es obligatorio'),
     category: Yup.string().required('La categoría es obligatoria')
   });
 
   const handleSubmit = (values) => {
     console.log(values);
+    getDrink(values)
   };
 
   return (
@@ -33,16 +36,16 @@ export const SearchForm = () => {
           <Row>
             <Col md={6}>
               <Form.Group>
-                <Form.Label htmlFor='name'>Nombre de la bebida</Form.Label>
+                <Form.Label htmlFor='ingredient'>Ingrediente</Form.Label>
                 <Field
-                  id='name'
+                  id='ingredient'
                   type='text'
-                  placeholder='Ej- Tequila, Vodka Ect'
-                  name='name'
+                  placeholder='Ej. Tequila, Vodka Ect'
+                  name='ingredient'
                   as={Form.Control}
                 />
                 <ErrorMessage
-                  name='name'
+                  name='ingredient'
                   component={Form.Text}
                   className='text-danger ms-2'
                 />
@@ -50,10 +53,9 @@ export const SearchForm = () => {
             </Col>
             <Col md={6}>
               <Form.Group>
-                <Form.Label htmlFor='category'>Seleccione La Categoría</Form.Label>
+                <Form.Label htmlFor='category'>Categoria bebida</Form.Label>
                 <Field
                   id='category'
-                  placeholder='Seleccione una categoría'
                   name='category'
                   as={Form.Select}
                 >
@@ -80,9 +82,11 @@ export const SearchForm = () => {
           <Row className='justify-content-end mt-3'>
             <Col md={3}>
               <Button variant='danger'
-                disabled={false}
+                disabled={loading}
                 className='w-100'
-                type='submit'>Buscar Bebidas</Button>
+                type='submit'>{
+                  loading ? "Buscando..." : "Buscar Bebidas"
+                }</Button>
             </Col>
           </Row>
         </Form>
