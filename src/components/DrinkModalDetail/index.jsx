@@ -1,4 +1,4 @@
-import { Modal, Row, Col,Image } from "react-bootstrap"
+import { Modal, Row, Col, Image } from "react-bootstrap"
 import useDrinks from "../../hooks/useDrinks"
 
 
@@ -10,14 +10,14 @@ export const DrinkModalDetail = () => {
         return null; // Otra opción es mostrar un mensaje de error
     }
 
-    const { strDrink, strDrinkThumb } = recipe
+    const { strDrink, strDrinkThumb, strInstructions } = recipe
 
     const showIngredients = () => {
         const ingredients = []
-        for (let i = 0; i <= 15; i++) {
+        for (let i = 1; i <= 15; i++) {
             if (recipe[`strIngredient${i}`]) {
                 ingredients.push(
-                    <li key={i}>{recipe[`strIngredient${i}`]}{recipe[`strMeasure${i}`]}</li>
+                    <li>{recipe[`strIngredient${i}`]} | {recipe[`strMeasure${i}`]}</li>
                 )
             }
         }
@@ -25,26 +25,25 @@ export const DrinkModalDetail = () => {
     }
 
     return (
-        <Modal show={showModal} onHide={handleShowModalCLick}>
+        <Modal show={showModal} onHide={handleShowModalCLick} size="xl">
             <Row>
                 <Col>
                     <Image
                         src={strDrinkThumb}
-                        alt={`imagen de ${strDrink}`}
+                        alt={`Imagen de ${strDrink}`}
                         fluid
                         className={"rounded-start"}
                     />
                 </Col>
                 <Col>
                     <Modal.Header closeButton>
-                        <Modal.Title>
-                            {strDrink}
-                        </Modal.Title>
+                        <Modal.Title>{strDrink}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <ul>
-                            {showIngredients()}
-                        </ul>
+                        <h4>Instructions</h4>
+                        <p>{strInstructions}</p>
+                        <h4>Ingredients & Meassures </h4>
+                        <ul>{showIngredients()}</ul>
                     </Modal.Body>
                 </Col>
             </Row>
