@@ -1,25 +1,24 @@
-import { createContext } from "react"
+import { createContext, useReducer } from "react"
 import PropTypes from 'prop-types'
-import { useState } from "react"
-import useDrinks from "../hooks/useDrinks"
-
-const CartContext =createContext(null)
-
-const CartProvider = ({children}) => {
-
-const [cart,setCart] =useState([]);
-const{drinks} = useDrinks()
-const addCart = (idDrink) =>{
-let drinkItemCart = drinks.find(drink => drink.idDrink === idDrink)
+import { cartReducer } from "../reducers/cartReducer";
 
 
-setCart([...cart, drinkItemCart])
+const CartContext = createContext(null)
+const init = () => {
+    return JSON.parse(localStorage.getItem('cart')) || []
 }
+const CartProvider = ({ children }) => {
+    
 
-const contextValue ={
-    cart,
-    addCart
-}
+    const [cart, dispatch] = useReducer(cartReducer, [], init);
+
+
+
+    const contextValue = {
+        cart,
+        dispatch
+
+    }
     return (
         <CartContext.Provider value={contextValue}>
             {children}
@@ -27,7 +26,7 @@ const contextValue ={
     )
 }
 
-CartProvider.propTypes ={
+CartProvider.propTypes = {
     children: PropTypes.node.isRequired
 }
 export {

@@ -10,7 +10,8 @@ const DrinksProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [recipe, setRecipe] = useState({});
     const [idDrink, setIdDrink] = useState(null);
-    const [showModal, setShowModal] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     const getDrink = async (data) => {
 
@@ -38,7 +39,7 @@ const DrinksProvider = ({ children }) => {
 
                 const recipeData = await getRecipeService(idDrink)
                 setRecipe(recipeData)
-                setShowModal((show) => !show)
+                setIsModalOpen(true);
             } catch (error) {
                 console.log(error)
             } finally {
@@ -52,14 +53,14 @@ const DrinksProvider = ({ children }) => {
         setIdDrink(id)
     }
     const handleShowModalClick = () => {
-        setShowModal((show) => !show)
-    }
+        setIsModalOpen(false);
+      };
     const contextValue = {
         drinks,
         getDrink,
         loading,
         handleDrinkIdClick,
-        showModal,
+        showModal: isModalOpen,
         handleShowModalClick,
         recipe
 
