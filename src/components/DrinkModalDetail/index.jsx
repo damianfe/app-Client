@@ -1,10 +1,13 @@
-import { Modal, Row, Col, Image} from "react-bootstrap";
+import { Modal, Row, Col, Image, Button} from "react-bootstrap";
 import useDrinks from "../../hooks/useDrinks";
+import useCart from "../../hooks/useCart";
+import { types } from "../../types";
+import { getDrinkById } from "../../helpers";
 
 export const DrinkModalDetail = () => {
-  const { showModal, handleShowModalClick, recipe } = useDrinks();
+  const { showModal, handleShowModalClick, recipe, drinks } = useDrinks();
   
-  const { strDrink, strDrinkThumb, strInstructions } = recipe;
+  const { idDrink,strDrink, strDrinkThumb, strInstructions } = recipe;
 
   const showIngredients = () => {
     const ingredients = [];
@@ -19,6 +22,17 @@ export const DrinkModalDetail = () => {
     }
     return ingredients;
   };
+  const { dispatch } = useCart()
+
+
+  const handleAddCart = () => {
+
+  const drink = getDrinkById(drinks,idDrink)
+      dispatch({
+          type: types.addItem,
+          payload: drink
+      })
+  }
 
   return (
     <Modal show={showModal} onHide={handleShowModalClick} size="xl" centered>
@@ -30,13 +44,20 @@ export const DrinkModalDetail = () => {
           <Modal.Header closeButton>
             <Modal.Title>{strDrink}</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            
+          <Modal.Body className="d-flex flex-column ">
+            <div>
             <h4>Instructions</h4>
             <p>{strInstructions}</p>
             <h4>Ingredients & Measures</h4>
             <ul>{showIngredients()}</ul>
-            
+            </div>
+            <Button
+                        variant={"danger"}
+                        className="w-100 text-uppercase mt-2"
+                        onClick={handleAddCart}
+                    >
+                        Comprar
+                    </Button>
             
   
           </Modal.Body>

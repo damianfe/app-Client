@@ -24,10 +24,3 @@ return data.drinks || []
     }
  }
 
-export const getDrinkById = async (idDrink) =>{
-    try {
-        
-    } catch (error) {
-        throw new Error("Hubo un error al obtener la bebida")
-    }
-}

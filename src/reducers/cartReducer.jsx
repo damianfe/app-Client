@@ -2,9 +2,13 @@ import { types } from "../types";
 
 export const cartReducer = (state = [], action) => {
     switch (action.type) {
-        case types.addItem :
+        case types.addItemToCart:
+
             return [...state, action.payload];
-        case types.removeItem:
+        case types.removeItemFromCart:
+            return state.filter((item) => item.idDrink !== action.payload);
+            
+        case types.removeAllItemsFromCart:
             return state.filter((item) => item.idDrink !== action.payload);
         default:
             return state;

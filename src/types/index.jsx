@@ -1,6 +1,6 @@
 export const types = {
-addItem: '[cart] addItem',
-removeItem: '[cart] removeItem',
-removeAll : '[cart] removeAll',
+addItemToCart: '[cart] addItem',
+removeItemFromCart: '[cart] removeItem',
+removeAllItemsFromCart : '[cart] removeAll',
 cleanCart :'[cart] cleanCart' 
 }

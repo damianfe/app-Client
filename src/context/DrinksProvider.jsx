@@ -62,7 +62,8 @@ const DrinksProvider = ({ children }) => {
         handleDrinkIdClick,
         showModal: isModalOpen,
         handleShowModalClick,
-        recipe
+        recipe,
+        idDrink
 
     }
     return (
