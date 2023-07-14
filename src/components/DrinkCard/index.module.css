@@ -1,5 +1,14 @@
+.background{
+    background-color: #212121;
+}
 .strDrink{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+.strDrinkThumb{
+    border-radius: 50px;
+    background: #212121;
+   
+
 }

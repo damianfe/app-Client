@@ -49,7 +49,7 @@ export const CartItem = ({ drink }) => {
               <i className="fa-solid fa-plus"></i>
             </button>
             <button className=" btn btn-sm btn-danger" onClick={handleRemoveAllItem} >
-              <i class="fa-solid fa-trash"></i>
+              <i className="fa-solid fa-trash"></i>
             </button>
           </div>
         </div>

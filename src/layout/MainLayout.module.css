@@ -2,4 +2,7 @@
 .main {
     height: auto;
     min-height: 100vh;
+    background-image: url(https://p4.wallpaperbetter.com/wallpaper/594/33/136/drink-bar-wallpaper-preview.jpg);
+    background-size: contain;
+    background-position-y: center ;
 }

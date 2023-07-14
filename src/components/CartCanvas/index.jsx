@@ -2,14 +2,14 @@ import { ListGroup, Offcanvas } from "react-bootstrap"
 import PropTypes from 'prop-types'
 import useCart from "../../hooks/useCart"
 import { CartItem } from "../CartItem"
-
+import styles from './index.module.css'
 export const CartCanvas = ({ showCart, handleCloseCart }) => {
 
   const { cart } = useCart()
 
 
   return (
-    <Offcanvas show={showCart} onHide={handleCloseCart} placement="end">
+    <Offcanvas show={showCart} onHide={handleCloseCart} placement="end" className={styles.CartModal}>
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>Mi Carrito</Offcanvas.Title>
       </Offcanvas.Header>

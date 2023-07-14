@@ -23,7 +23,7 @@ export const DrinkCard = ({ drink }) => {
 
     return (
         <Col md={6} lg={3}>
-            <Card className='mb-4'>
+            <Card className='mb-4' styles={types.strDrinkThumb}>
                 <Card.Img
                     variant='top'
                     src={strDrinkThumb}
