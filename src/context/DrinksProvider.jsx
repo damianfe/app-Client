@@ -40,6 +40,7 @@ const DrinksProvider = ({ children }) => {
                 const recipeData = await getRecipeService(idDrink)
                 setRecipe(recipeData)
                 setIsModalOpen(true);
+                setIdDrink(false)
             } catch (error) {
                 console.log(error)
             } finally {
