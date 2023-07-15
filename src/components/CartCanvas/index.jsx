@@ -1,12 +1,18 @@
-import { ListGroup, Offcanvas } from "react-bootstrap"
+import { Button, ListGroup, Offcanvas } from "react-bootstrap"
 import PropTypes from 'prop-types'
 import useCart from "../../hooks/useCart"
 import { CartItem } from "../CartItem"
 import styles from './index.module.css'
+import { types } from "../../types"
 export const CartCanvas = ({ showCart, handleCloseCart }) => {
 
-  const { cart } = useCart()
-
+  const { cart,dispatch } = useCart()
+  const cleanCart = () =>{
+    dispatch({
+      type:types.cleanCart,
+      payload : {}  
+    })
+  } 
 
   return (
     <Offcanvas show={showCart} onHide={handleCloseCart} placement="end" className={styles.CartModal}>
@@ -14,17 +20,26 @@ export const CartCanvas = ({ showCart, handleCloseCart }) => {
         <Offcanvas.Title>Mi Carrito</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        <ListGroup>
-          {
-            cart.length
-              ?
-              (cart.map(drink => <CartItem key={drink.idDrink} drink={drink} />)
-              )
-              :
-              <p>No hay productos agregados</p>
-          }
+        {cart.length ? (
+          <div className="d-flex flex-column justify-content-between h-100">
+            <div>
+              <ListGroup>
 
-        </ListGroup>
+                {
+                  cart.map(drink => <CartItem key={drink.idDrink} drink={drink} />)
+                }
+
+              </ListGroup>
+            </div>
+            <div className="d-flex justify-content-center gap-2 mt-2">
+              <Button variant="secondary" onClick={cleanCart}>Vaciar el carrito </Button>
+              <Button variant="danger">Confirmar Compra</Button>
+            </div>
+          </div>
+
+        ) : (
+          <p>No hay productos agregados</p>
+        )}
       </Offcanvas.Body>
     </Offcanvas>
   )

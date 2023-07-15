@@ -58,15 +58,16 @@ export const cartReducer = (state = [], action) => {
         case types.addItemToCart:
 
             return addItemToCart(item)
-
-
                 ;
         case types.removeItemFromCart:
             return removeItemToCart()
         
             case types.removeAllItemsFromCart:
             return removeAllItemsFromCart()
-        default:
+        case types.cleanCart:
+        localStorage.removeItem('cart')
+        return []
+            default:
             return state;
     }
 };

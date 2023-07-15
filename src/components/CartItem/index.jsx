@@ -44,6 +44,7 @@ export const CartItem = ({ drink }) => {
               style={{ width: "50px" }}
               className="form-control"
               value={quantity}
+              readOnly
             />
             <button className="btn btn-sm btn-success" onClick={handleAddItem}>
               <i className="fa-solid fa-plus"></i>
