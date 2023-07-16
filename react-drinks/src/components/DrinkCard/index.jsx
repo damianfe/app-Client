@@ -4,7 +4,7 @@ import useDrinks from "../../hooks/useDrinks";
 import styles from './index.module.css'
 import useCart from "../../hooks/useCart";
 import { types } from '../../types'
-
+import Swal from 'sweetalert2'
 
 export const DrinkCard = ({ drink }) => {
     const { strDrinkThumb, strDrink, idDrink } = drink;
@@ -20,6 +20,13 @@ export const DrinkCard = ({ drink }) => {
             payload: drink
         })
     }
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Agregado Al Carrito',
+        showConfirmButton: false,
+        timer: 1500
+      })
 
     return (
         <Col md={6} lg={3}>
