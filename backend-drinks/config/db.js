@@ -8,8 +8,10 @@ const connectDB = async ()=>{
             useNewUrlParser : true,
             useUnifiedTopology : true
         })
-        console.log(connection.connection.port);
+
+
         const url = `${connection.connection.host}:${connection.connection.port}` 
+        console.log(`MongoDB connected in ${url}`);
     } catch (error) {
         console.log(error.message)
     }
