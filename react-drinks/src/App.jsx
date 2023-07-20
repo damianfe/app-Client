@@ -1,14 +1,17 @@
+import { BrowserRouter } from "react-router-dom"
+import { AuthProvider } from "./context/AuthProvider"
 import { CartProvider } from "./context/CartProvider"
 import { CategoriesProvider } from "./context/CategoriesProvider"
 import { DrinksProvider } from "./context/DrinksProvider"
-import { UserProvider } from "./context/UserProvider"
+
 import MainLayout from "./layout"
 import AppRoutes from "./routes"
 
 function App() {
 
   return (
-    <UserProvider>
+    <BrowserRouter>
+    <AuthProvider>
       <CategoriesProvider>
         <DrinksProvider>
           <CartProvider>
@@ -20,8 +23,8 @@ function App() {
         
       </CategoriesProvider>
 
-    </UserProvider>
-
+    </AuthProvider>
+    </BrowserRouter>
   )
 }
 
