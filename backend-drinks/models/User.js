@@ -4,43 +4,49 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     name: {
-        type :String,
+        type: String,
         required: true,
         trim: true
     },
     email: {
-        type:String,
+        type: String,
         required: true,
         trim: true,
         unique: true
     },
-    password : {
-        type:String,
+    password: {
+        type: String,
         required: true,
         trim: true
 
     },
-    token : {
-        type:String
+    token: {
+        type: String
     },
-    checked : {
-        type:Boolean,
-        default : false
-    }
+    checked: {
+        type: Boolean,
+        default: false
+    },
+    favorites: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'favorite'
+        }
+    ],
 },
-{
-    timestamps : true
-})
-userSchema.pre('save',async function(next){
-    if(!this.isModified('password')){
+    {
+        timestamps: true
+    })
+userSchema.pre('save', async function (next) {
+    if (!this.isModified('password')) {
         next()
     }
     this.password = await hash(this.password, 10)
 });
 
-userSchema.methods.checkedPassword = async function(password){
+userSchema.methods.checkedPassword = async function (password) {
     return await compare(password, this.password)
 }
 
 
-module.exports = mongoose.model('User',userSchema)
+module.exports = mongoose.model('User', userSchema)

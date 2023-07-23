@@ -9,7 +9,8 @@ const favoriteSchema = new mongoose.Schema({
         trim: true
     },
    user : {
-    type: mongoose.Schema
+    type: mongoose.Schema.Types.ObjectId,
+    ref : 'User'
    }
 },
 {

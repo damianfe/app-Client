@@ -4,6 +4,7 @@ import NotFound from "../pages/NotFound";
 import { Login } from "../pages/Login";
 import { Profile } from "../pages/Profile";
 import { ProtectedRoutes } from "./ProtectedRoutes";
+import { Register } from "../pages/Register";
 
 
 export default function AppRoutes() {
@@ -12,11 +13,12 @@ export default function AppRoutes() {
         <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
-            <Route path="/user" element={<ProtectedRoutes/>}>
+            <Route path='/register' element={<Register />} />
+            <Route path="/user" element={<ProtectedRoutes />}>
                 <Route path='profile' element={<Profile />} />
             </Route>
             <Route path='*' element={<NotFound />} />
         </Routes>
 
-    )
+    );
 }

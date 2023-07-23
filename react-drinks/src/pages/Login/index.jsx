@@ -3,10 +3,12 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import * as Yup from 'yup';
 import useAuth from '../../hooks/authProvider';
+import { useNavigate } from 'react-router-dom';
 
 
 export const Login = () => {
 
+    const navigate =useNavigate()
     const { login, alert } = useAuth()
 
     const initialValues = {
@@ -23,6 +25,7 @@ export const Login = () => {
 
     const handleSubmit = (values) => {
         login(values)
+        navigate('/')
 
     };
 

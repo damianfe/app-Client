@@ -39,9 +39,14 @@ const handleLogout = () =>{
                 </Button>
               </div>
             ) : (
+              <>
               <Link to={"/login"} className="btn btn-lg btn-outline-light">
                 <i className="fa-solid fa-right-to-bracket"></i>
               </Link>
+              <Link to={"/register"} className="btn btn-lg btn-outline-light">
+              <i className="fa-solid fa-user-plus"></i>
+              </Link>
+              </>
             )
         }
 
