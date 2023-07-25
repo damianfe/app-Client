@@ -20,7 +20,7 @@ Proyecto de Buscador de bebidas.
 ## Comandos:
 # Back: 
  - Instalar <strong>npm install</strong>
- - Levantar server : npm start
+ - Levantar proyecto : npm start
 # Front :
 - Instalar <strong> yarn install</strong>
 - Levantar proyecto: yarn  run dev
