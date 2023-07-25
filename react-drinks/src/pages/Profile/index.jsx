@@ -16,7 +16,10 @@ export const Profile = () => {
   return (
 
     userProfile && (
-      <div>
+      <div style={{
+        color: "white",
+        textShadow: "2px 2px 4px black"
+      }}>
         <h2>{userProfile.name}</h2>
         <hr />
         <h3>{userProfile.email}</h3>

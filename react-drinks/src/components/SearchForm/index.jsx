@@ -7,7 +7,7 @@ import useDrinks from '../../hooks/useDrinks';
 export const SearchForm = () => {
 
   const { categories } = useCategories();
-  const {getDrink, loading} = useDrinks();
+  const { getDrink, loading } = useDrinks();
 
 
   const initialValues = {
@@ -36,7 +36,10 @@ export const SearchForm = () => {
           <Row>
             <Col md={6}>
               <Form.Group>
-                <Form.Label htmlFor='ingredient'>Ingrediente</Form.Label>
+                <Form.Label htmlFor='ingredient' style={{
+                  color: "white",
+                  textShadow: "2px 2px 4px black"
+                }}>Ingrediente</Form.Label>
                 <Field
                   id='ingredient'
                   type='text'
@@ -53,7 +56,10 @@ export const SearchForm = () => {
             </Col>
             <Col md={6}>
               <Form.Group>
-                <Form.Label htmlFor='category'>Categoria bebida</Form.Label>
+                <Form.Label htmlFor='category' style={{
+                  color: "white",
+                  textShadow: "2px 2px 4px black"
+                }}>Categoria bebida</Form.Label>
                 <Field
                   id='category'
                   name='category'

@@ -1,7 +1,8 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { loginAuthService, profileUserService } from '../services/auth.service'
+import { loginAuthService, profileUserService, toggleFavoriteService } from '../services/auth.service'
 import jwtDecode from 'jwt-decode'
+import { useNavigate } from 'react-router-dom'
 
 
 const AuthContext = createContext(null)
@@ -11,6 +12,32 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [alert, setAlert] = useState(null);
     const [userProfile, setuserProfile] = useState(null);
+    const [favorites, setFavorites] = useState([]);
+
+
+    const Navigate = useNavigate();
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('DrinksToken')
+        if(token){
+            const decodToken = jwtDecode(token)
+            setUser(decodToken.user)
+        
+        }
+    }, []);
+
+    const handleToggleFavorite = (idDrink) => {
+        if (!favorites.includes(idDrink)) {
+            setFavorites([
+                ...favorites,
+                idDrink
+            ])
+        } else {
+            setFavorites(favorites.filter(favorite => favorite !== idDrink))
+        }
+        toggleFavoriteService(idDrink)
+    }
+
     const handleAlert = (error) => {
         setAlert(error.message)
         setTimeout(() => {
@@ -25,6 +52,9 @@ const AuthProvider = ({ children }) => {
 
             const decodToken = token ? jwtDecode(token) : null
             setUser(decodToken.user)
+           
+            setFavorites(decodToken.user.favorites)
+            Navigate("/")
             //console.log(response);
         } catch (error) {
             //console.log(error);
@@ -51,6 +81,9 @@ const AuthProvider = ({ children }) => {
     }
     const logout = () => {
         setUser(null)
+        setuserProfile({})
+        setFavorites([])
+        sessionStorage.removeItem('DrinksToken')
     }
 
     const contexValue = {
@@ -60,6 +93,8 @@ const AuthProvider = ({ children }) => {
         logout,
         getProfile,
         alert,
+        handleToggleFavorite,
+        favorites
 
     }
 

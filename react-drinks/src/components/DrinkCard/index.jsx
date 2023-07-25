@@ -5,16 +5,19 @@ import styles from './index.module.css'
 import useCart from "../../hooks/useCart";
 import { types } from '../../types'
 import Swal from 'sweetalert2'
+import useAuth from "../../hooks/authProvider";
 
 export const DrinkCard = ({ drink }) => {
     const { strDrinkThumb, strDrink, idDrink } = drink;
     const { handleDrinkIdClick } = useDrinks()
 
+    const { handleToggleFavorite, favorites, user } = useAuth()
+
     const { dispatch } = useCart()
 
 
     const handleAddCart = () => {
-        
+
         dispatch({
             type: types.addItemToCart,
             payload: drink
@@ -24,10 +27,21 @@ export const DrinkCard = ({ drink }) => {
         position: 'top-end',
         icon: 'success',
         title: 'Agregado Al Carrito',
-        showConfirmButton: false,
-        timer: 1500
-      })
 
+    })
+    const handleFavorite = () => {
+        user ?
+            handleToggleFavorite(idDrink)
+            :
+            Swal.fire({
+
+                icon: 'error',
+                title: 'Debes estar logeado!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+    }
     return (
         <Col md={6} lg={3}>
             <Card className='mb-4' styles={types.strDrinkThumb}>
@@ -38,6 +52,17 @@ export const DrinkCard = ({ drink }) => {
                 />
                 <Card.Body>
                     <Card.Title className={styles.strDrink}>{strDrink}</Card.Title>
+                    <a className="text-danger" onClick={handleFavorite}>
+
+                        {
+                            favorites.includes(idDrink) ?
+                                <i className="fa-solid fa-heart fa-lg" />
+
+                                :
+
+                                <i className="fa-regular fa-heart fa-lg" />
+                        }
+                    </a>
                     <Button
                         variant={"warning"}
                         className="w-100 text-uppercase mt-2"

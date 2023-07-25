@@ -3,12 +3,12 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import * as Yup from 'yup';
 import useAuth from '../../hooks/authProvider';
-import { useNavigate } from 'react-router-dom';
+
 
 
 export const Login = () => {
 
-    const navigate =useNavigate()
+
     const { login, alert } = useAuth()
 
     const initialValues = {
@@ -25,7 +25,6 @@ export const Login = () => {
 
     const handleSubmit = (values) => {
         login(values)
-        navigate('/')
 
     };
 
@@ -41,7 +40,10 @@ export const Login = () => {
                     {alert && <Alert variant='danger'>{alert}</Alert>}
 
                     <Form.Group>
-                        <Form.Label htmlFor='email'>Email</Form.Label>
+                        <Form.Label htmlFor='email' style={{
+                            color: "white",
+                            textShadow: "2px 2px 4px black"
+                        }}>Email</Form.Label>
                         <Field
                             id='email'
                             type='text'
@@ -57,7 +59,10 @@ export const Login = () => {
                         />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label htmlFor='password'>Contraseña</Form.Label>
+                        <Form.Label htmlFor='password' style={{
+                            color: "white",
+                            textShadow: "2px 2px 4px black"
+                        }}>Contraseña</Form.Label>
                         <Field
                             id='password'
                             type='password'

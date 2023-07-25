@@ -2,7 +2,7 @@ import { Button, ListGroup, Offcanvas } from "react-bootstrap"
 import PropTypes from 'prop-types'
 import useCart from "../../hooks/useCart"
 import { CartItem } from "../CartItem"
-import styles from './index.module.css'
+
 import { types } from "../../types"
 export const CartCanvas = ({ showCart, handleCloseCart }) => {
 
@@ -15,9 +15,12 @@ export const CartCanvas = ({ showCart, handleCloseCart }) => {
   } 
 
   return (
-    <Offcanvas show={showCart} onHide={handleCloseCart} placement="end" className={styles.CartModal}>
+    <Offcanvas show={showCart} onHide={handleCloseCart} placement="end" style={{ backgroundColor: "#b6151080" }}>
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title>Mi Carrito</Offcanvas.Title>
+        <Offcanvas.Title style={{
+                  color: "white",
+                  textShadow: "2px 2px 4px black"
+                }}>Mi Carrito</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
         {cart.length ? (
