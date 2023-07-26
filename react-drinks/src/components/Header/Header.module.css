@@ -1,9 +1,97 @@
 .header {
-  background-color: #b6151080;
-  color: white;
+
+  color: #dbb2b2;
   text-align: center;
+  min-height: 30vh;
+  min-width: 100vw;
+  background: #b6151080;
+
+
+
+  background-repeat: no-repeat;
+  background-size: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.header a {
+  text-decoration: none;
+  color: #ce2626b7;
+}
+.navbarScrollingDropdow{
+  color:#c91c1c
 }
 .header h1 {
-  font-family: "Outfit", sans-serif;
-  font-weight: 900;
+  font-size: 50px;
+  font-family: 'Island Moments';
+  background-color: rgba(63, 47, 47, 0.795);
+  border-radius: 25px;
+
+}
+
+.header h5 {
+  font-family: 'Island Moments';
+  font-size: 50px;
+
+}
+
+.menuHeader {
+  display: flex;
+  background-color: rgba(161, 4, 4, 0.5);
+
+}
+
+.itemNav {
+  font-family: 'Island Moments';
+  list-style: none;
+  font-size: 2rem;
+  margin-right: 55px;
+}
+
+.navbarContent {
+  font-family: 'Island Moments';
+  background-color: rgba(161, 30, 30, 0.8);
+  width: 100vh;
+  color: #c91c1c;
+}
+.nav-drop {
+  color: white;
+  text-shadow: 2px 2px 4px black;
+}
+
+.btn-spacing {
+  margin-right: 8px; /* Puedes ajustar el valor según el espacio deseado */
+}
+
+
+
+@keyframes sizeChange {
+  0% {
+      transform: scale(0.5);
+  }
+
+  100% {
+      transform: scale(1);
+  }
+}
+
+@media (min-width:425px) {
+  .logo {
+      width: 100px;
+  }
+}
+
+@media (min-width:768px) {
+  .logo {
+      width: 130px;
+  }
+}
+
+@media (min-width:1024px) {
+  .logo {
+      width: 160px;
+  }
 }

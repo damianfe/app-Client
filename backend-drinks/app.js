@@ -5,7 +5,7 @@ const path = require('path');
 const logger = require('morgan');
 const cors = require('cors')
 const indexRouter = require('./routes/index');
-
+const productRouter = require('./routes/product')
 const connectDB = require('./config/db')
 
 const app = express();
@@ -19,7 +19,7 @@ app
   .use(cors())
   /* Rutas */
   .use('/', indexRouter)
-
+  .use('/product', productRouter)
 
   // catch 404 and forward to error handler
   .use(function (req, res, next) {

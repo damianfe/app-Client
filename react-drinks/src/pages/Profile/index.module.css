@@ -1,0 +1,83 @@
+.profile {
+     text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;  
+    flex-wrap: wrap;
+    display: flex;
+
+}
+
+.profile h3 {
+    width: 100%;
+
+}
+
+
+.profile h2 {
+    width: 90%;
+    margin: 25px auto;
+    border-top: solid 1px green;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    background-color: rgba(180, 39, 39, 0.623);
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px;
+
+}
+.h5{
+    text-decoration: none;
+}
+
+.contenedor_fav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1px;
+}
+
+.strDrink {
+    width: 25rem;
+    box-shadow: 5px 2px 5px black;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2px;
+    justify-content: center;
+    align-items: center;
+animation: fadeIn 3s;
+
+}
+@keyframes fadeIn{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.strImg {
+    height: 70%;
+    border-radius: 50%;
+    box-shadow: 7px 2px 5px black;
+}
+
+.strDrink Img {
+    width: 100px;
+}
+@media(max-width:426px){
+.strDrink{
+    width: 18rem;
+}
+.button{
+    width: 100%;
+}
+}

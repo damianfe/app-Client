@@ -22,13 +22,14 @@ export const DrinkCard = ({ drink }) => {
             type: types.addItemToCart,
             payload: drink
         })
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Agregado Al Carrito',
+    
+        })
     }
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Agregado Al Carrito',
-
-    })
+    
     const handleFavorite = () => {
         user ?
             handleToggleFavorite(idDrink)

@@ -2,7 +2,7 @@ import { Button, ListGroup, Offcanvas } from "react-bootstrap"
 import PropTypes from 'prop-types'
 import useCart from "../../hooks/useCart"
 import { CartItem } from "../CartItem"
-
+import Swal from 'sweetalert2'
 import { types } from "../../types"
 export const CartCanvas = ({ showCart, handleCloseCart }) => {
 
@@ -13,6 +13,16 @@ export const CartCanvas = ({ showCart, handleCloseCart }) => {
       payload : {}  
     })
   } 
+  const handleConfirm = () => {
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '¡Compra Realizada!',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    cleanCart()
+}
 
   return (
     <Offcanvas show={showCart} onHide={handleCloseCart} placement="end" style={{ backgroundColor: "#b6151080" }}>
@@ -36,7 +46,7 @@ export const CartCanvas = ({ showCart, handleCloseCart }) => {
             </div>
             <div className="d-flex justify-content-center gap-2 mt-2">
               <Button variant="secondary" onClick={cleanCart}>Vaciar el carrito </Button>
-              <Button variant="danger">Confirmar Compra</Button>
+              <Button variant="danger"onClick={handleConfirm}>Confirmar Compra</Button>
             </div>
           </div>
 
