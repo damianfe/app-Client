@@ -44,14 +44,14 @@ export const DrinkCard = ({ drink }) => {
 
     }
     return (
-        <Col md={6} lg={3}>
+        <Col md={6} lg={3} style={{background:"tranparent"}}>
             <Card className='mb-4' styles={types.strDrinkThumb}>
                 <Card.Img
                     variant='top'
                     src={strDrinkThumb}
                     alt={`imagen de ${strDrink}`}
                 />
-                <Card.Body>
+                <Card.Body style={{background:"darksalmon"}}>
                     <Card.Title className={styles.strDrink}>{strDrink}</Card.Title>
                     <a className="text-danger" onClick={handleFavorite}>
 

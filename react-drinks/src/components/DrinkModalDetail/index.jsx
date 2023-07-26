@@ -36,7 +36,7 @@ export const DrinkModalDetail = () => {
 
   return (
     <Modal show={showModal} onHide={handleShowModalClick} size="xl" centered>
-      <Row>
+      <Row style={{background:"darksalmon"}}>
         <Col>
           <Image src={strDrinkThumb} fluid className="rounded-start" />
         </Col>
@@ -44,8 +44,8 @@ export const DrinkModalDetail = () => {
           <Modal.Header closeButton>
             <Modal.Title>{strDrink}</Modal.Title>
           </Modal.Header>
-          <Modal.Body className="d-flex flex-column ">
-            <div>
+          <Modal.Body  className="d-flex flex-column">
+            <div  style={{background:"darksalmon"}}>
             <h4>Instructions</h4>
             <p>{strInstructions}</p>
             <h4>Ingredients & Measures</h4>
