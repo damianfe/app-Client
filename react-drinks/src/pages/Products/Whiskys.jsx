@@ -1,59 +1,62 @@
 import { Container, Row, Col, Card} from 'react-bootstrap'
 import { useEffect, useState } from 'react';
-import axios from 'axios'
-import styles from './index.module.css';
+import axios from 'axios';
+import styled from 'styled-components';
 
 
 const apiURL = import.meta.env.VITE_API_URL_PRODUCTS;
+
+const ProductWrapper = styled.div`
+  .product-title {
+    color: white;
+    text-shadow: 2px 2px 4px black;
+  }
+`;
+
+const CardProduct = styled(Card)`
+  .card-body {
+    padding: 1rem;
+  }
+`;
 
 export const Whiskyes = () => {
 
   const [whiskys, setWhiskys] = useState([]);
 
-
-  useEffect(()=>{
+  useEffect(() => {
     axios.get(`${apiURL}whiskys`)
-    .then((response)=>{
-      setWhiskys(response.data.whisky)
-      console.log(response.data);
-    })
-    .catch((error) =>{
-      console.error('ocurrió un error',error)
-    })
+      .then((response) => {
+        //console.log('Respuesta del servidor:', response);
+        setWhiskys(response.data.whiskys);
+      })
+      .catch((error) => {
+        console.error('Ocurrió un error:', error);
+      });
+  }, []);
+
   
-  },[])
- console.log(whiskys);
- 
-
- 
-  return (
-    <div className={styles.product}>
-      <h1 style={{
-                            color: "white",
-                            textShadow: "2px 2px 4px black"
-                        }}>Whisky</h1>
-      <Container>
-        <Row xs={1} md={2} lg={4} className="g-4">
-         {whiskys && whiskys.map((product) => (
-              <Col key={product._id}>
-                <Card className={styles.cardProduct}>
-                  <Card.Img variant="top" src= {`${product.urlImage}`} />
-                  <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
-                    <Card.Text>
-                      
-                      {`$ ${product.price}`}
-                     
-                    </Card.Text>
-                 
-                   
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-        </Row>
-      </Container>
-    </div>
-
-  )
+    return (
+      <ProductWrapper>
+        <h1 className="product-title">Whisky</h1>
+        <Container>
+          <Row xs={1} md={2} lg={4} className="g-4">
+            {Array.isArray(whiskys) ? (
+              whiskys.map((product) => (
+                <Col key={product._id}>
+                  <CardProduct>
+                    <Card.Img variant="top" src={product.urlImage} />
+                    <Card.Body>
+                      <Card.Title>{product.name}</Card.Title>
+                      <Card.Text>{`$ ${product.price}`}</Card.Text>
+                    </Card.Body>
+                  </CardProduct>
+                </Col>
+              ))
+            ) : (
+              <p className="product-title">Cargando whiskys...</p>
+            )}
+          </Row>
+        </Container>
+      </ProductWrapper>
+    );
 }

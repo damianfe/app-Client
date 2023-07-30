@@ -33,7 +33,7 @@ export const Profile = () => {
 
 
   return (
-    
+
     user ? (
       <div className={styles.profile}>
         <div style={{
@@ -60,9 +60,10 @@ export const Profile = () => {
                   <Card.Body className="d-flex p-0">
 
                     <Card.Text>
-                      {recipeData.strDrink}
+                      <span>{recipeData.strDrink}</span>
                       <h5>{`$ ${(recipeData.idDrink / 10).toFixed(0)}`}</h5>
                     </Card.Text>
+
 
                   </Card.Body>
                 </Card>
@@ -70,7 +71,7 @@ export const Profile = () => {
 
             </div>)
             :
-            (<h5 className={styles.h5}style={{
+            (<h5 className={styles.h5} style={{
               color: "white",
               textShadow: "2px 2px 4px black"
             }}>¡Aún no tienes favoritos agregados!</h5>)
@@ -86,7 +87,7 @@ export const Profile = () => {
         <Link to={'/login'}>Ingresá...</Link>
       </div>
     )
-    
+
   )
 }
 Profile.propTypes = {
