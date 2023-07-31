@@ -3,10 +3,12 @@ import useDrinks from "../../hooks/useDrinks";
 import useCart from "../../hooks/useCart";
 import { types } from "../../types";
 import { getDrinkById } from "../../helpers";
+import useAuth from "../../hooks/authProvider";
+import Swal from 'sweetalert2'
 
 export const DrinkModalDetail = () => {
   const { showModal, handleShowModalClick, recipe, drinks } = useDrinks();
-  
+ const { user } = useAuth()
   const { idDrink,strDrink, strDrinkThumb, strInstructions } = recipe;
 
   const showIngredients = () => {
@@ -27,11 +29,26 @@ export const DrinkModalDetail = () => {
 
   const handleAddCart = () => {
 
-  const drink = getDrinkById(drinks,idDrink)
+    if (user) {
+      const drink = getDrinkById(drinks, idDrink);
       dispatch({
-          type: types.addItem,
-          payload: drink
-      })
+        type: types.addItem,
+        payload: drink,
+      });
+      Swal.fire({
+        icon: "success",
+        title: "Agregado Al Carrito",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Debes estar logeado para agregar al carrito!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   }
 
   return (

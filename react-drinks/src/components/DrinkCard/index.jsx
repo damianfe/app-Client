@@ -18,16 +18,24 @@ export const DrinkCard = ({ drink }) => {
 
     const handleAddCart = () => {
 
-        dispatch({
-            type: types.addItemToCart,
-            payload: drink
-        })
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Agregado Al Carrito',
-    
-        })
+        if (user) {
+            dispatch({
+                type: types.addItemToCart,
+                payload: drink,
+            });
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Agregado Al Carrito',
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Debes estar logeado para agregar al carrito!',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
     }
     
     const handleFavorite = () => {
