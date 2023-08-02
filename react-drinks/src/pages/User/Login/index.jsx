@@ -2,7 +2,9 @@
 import { Formik, Field, ErrorMessage } from 'formik';
 import { Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import * as Yup from 'yup';
-import useAuth from '../../hooks/authProvider';
+import useAuth from '../../../hooks/authProvider';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -77,14 +79,16 @@ export const Login = () => {
                         />
                     </Form.Group>
 
-                    <Row className='justify-content-end mt-3'>
-                        <Col md={3}>
-                            <Button variant='dark'
-                                disabled={false}
-                                className='w-100'
-                                type='submit'>
-                                Iniciar Sesion
+                    <Row className='justify-content-between mt-3'>
+                        <Col md={6}>
+                            <Button variant='dark' className='w-100' type='submit'>
+                                Iniciar Sesión
                             </Button>
+                        </Col>
+                        <Col md={6} className='text-end'>
+                            <Link to='/forgotpass' style={{ color: 'white', textDecoration: 'underline' }}>
+                                ¿Olvidaste la contraseña?
+                            </Link>
                         </Col>
                     </Row>
                 </Form>

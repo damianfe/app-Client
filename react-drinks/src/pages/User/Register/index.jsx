@@ -2,7 +2,7 @@
 import { Formik, Field, ErrorMessage } from 'formik';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import * as Yup from 'yup';
-import { registerAuthService } from '../../services/auth.service';
+import { registerAuthService } from '../../../services/auth.service';
 import { useNavigate } from 'react-router-dom';
 
 

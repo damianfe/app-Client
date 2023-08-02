@@ -3,9 +3,9 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import styles from './index.module.css'
 import PropTypes from 'prop-types';
-import { getRecipeService } from "../../services/drinks.service";
+import { getRecipeService } from "../../../services/drinks.service";
 import { Card } from "react-bootstrap";
-import useAuth from "../../hooks/authProvider";
+import useAuth from "../../../hooks/authProvider";
 
 
 export const Profile = () => {

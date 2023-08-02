@@ -1,14 +1,15 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
-import { Login } from "../pages/Login";
-import { Profile } from "../pages/Profile";
+import { Login } from "../pages/User/Login";
+import { Profile } from "../pages/User/Profile";
 import { ProtectedRoutes } from "./ProtectedRoutes";
-import { Register } from "../pages/Register";
+import { Register } from "../pages/User/Register";
 import { Productos } from "../pages/Products";
 import { Whiskyes } from "../pages/Products/Whiskys";
 import { Vinos } from "../pages/Products/Vinos";
 import { Licores } from "../pages/Products/Licores";
+import {ForgotPassword} from '../pages/User/Forgot'
 
 
 
@@ -19,6 +20,7 @@ export default function AppRoutes() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/forgotpass' element={<ForgotPassword/>} />
             <Route path="/user" element={<ProtectedRoutes />}>
                 <Route path='profile' element={<Profile />} />
             </Route>
