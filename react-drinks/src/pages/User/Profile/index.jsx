@@ -50,23 +50,22 @@ export const Profile = () => {
           color: "white",
           textShadow: "2px 2px 4px black"
         }}>Tus Favoritos</h2>
+        <hr />
         {
           favorites.length ? (
             <div className={styles.contenedor_fav}>
               {recipes.map((recipeData, index) => (
                 <Card key={index} className={styles.strDrink}>
-                  <Card.Img variant="top" src={recipeData.strDrinkThumb}
-                    alt={`Imagen`} className={styles.strImg} />
-                  <Card.Body className="d-flex p-0">
-
+                <div className={styles.cardContent}>
+                  <Card.Img variant="top" src={recipeData.strDrinkThumb} alt={`Imagen`} className={styles.strImg} />
+                  <div className={styles.titleContainer}>
                     <Card.Text>
-                      <span>{recipeData.strDrink}</span>
-                      <h5>{`$ ${(recipeData.idDrink / 10).toFixed(0)}`}</h5>
+                      <span className="title-fav">{recipeData.strDrink}</span>
                     </Card.Text>
-
-
-                  </Card.Body>
-                </Card>
+                    <h5>{`$${(recipeData.idDrink / 10).toFixed(0)}`}</h5>
+                  </div>
+                </div>
+              </Card>
               ))}
 
             </div>)

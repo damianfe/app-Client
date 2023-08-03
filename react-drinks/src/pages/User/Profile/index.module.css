@@ -1,8 +1,8 @@
 .profile {
-     text-align: center;
+    text-align: center;
     display: flex;
     align-items: center;
-    flex-direction: column;  
+    flex-direction: column;
     flex-wrap: wrap;
     display: flex;
 
@@ -14,11 +14,7 @@
 }
 
 
-.profile h2 {
-    width: 90%;
-    margin: 25px auto;
-    border-top: solid 1px green;
-}
+
 
 .button {
     display: flex;
@@ -29,37 +25,76 @@
     border-radius: 5px;
     margin: 20px;
 
+
 }
-.h5{
+
+.h5 {
     text-decoration: none;
 }
 
 .contenedor_fav {
-    width: 100%;
+    align-items: center;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 1px;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
 }
 
 .strDrink {
-    width: 25rem;
-    box-shadow: 5px 2px 5px black;
-    border-radius: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 2px;
-    justify-content: center;
+    width: 300px;
+}
+
+.cardContent {
     align-items: center;
-animation: fadeIn 3s;
+    background-color: #d4502f;
+    display: flex;
+    gap: 10px;
+    font-size: 16px;
+    color: #cf2727;
+    text-shadow: rgb(17, 9, 9) 0.1em 0.1em 0.2em;
+    justify-content: space-evenly;
+}
+
+.strImg {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.strImg:hover {
+    
+    transform: scale(1.1);
+    /* Escala el elemento al 110% del tamaño original */
+    border: 2px solid #d4502f;
+    /* Agrega un borde de color azul */
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: transparent;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #dabebe;
+}
+
+.title-fav {
+    font-size: 16px;
+    color: #271010;
 
 }
-@keyframes fadeIn{
-    from{
-        opacity:0;
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
     }
-    to{
+
+    to {
         opacity: 1;
     }
 }
@@ -67,17 +102,19 @@ animation: fadeIn 3s;
 .strImg {
     height: 70%;
     border-radius: 50%;
-    box-shadow: 7px 2px 5px black;
+    box-shadow: 5px 2px 5px rgb(211, 30, 30);
 }
 
 .strDrink Img {
     width: 100px;
 }
-@media(max-width:426px){
-.strDrink{
-    width: 18rem;
-}
-.button{
-    width: 100%;
-}
+
+@media(max-width:426px) {
+    .strDrink {
+        width: 18rem;
+    }
+
+    .button {
+        width: 100%;
+    }
 }
