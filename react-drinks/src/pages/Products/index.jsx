@@ -5,6 +5,7 @@ import ImgWhisky from '../../../public/whisky2.jpg';
 import Vinos from '../../../public/vino-tinto.png';
 import Licores from '../../../public/licore.png';
 
+// Definimos una animación de rebote llamada "bounceAnimation" usando keyframes
 const bounceAnimation = keyframes`
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
@@ -17,6 +18,7 @@ const bounceAnimation = keyframes`
   }
 `;
 
+// Creamos un "styled-component" para el contenedor principal de los productos
 const ProductWrapper = styled(Container)`
   .product {
     margin-bottom: 15px;
@@ -35,56 +37,57 @@ const ProductWrapper = styled(Container)`
 
     @media (max-width: 768px) {
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: center;
     }
 
     @media (max-width: 1024px) {
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: center;
     }
 
     @media (max-width: 1440px) {
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: center;
     }
 
     @media (max-width: 2560px) {
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: center;
     }
   }
 `;
 
+// Creamos un "styled-component" para el componente Card de los productos
 const ProductCard = styled(Card)`
-position: relative;
-width: 17rem;
+  position: relative;
+  width: 17rem;
 
-.productCardOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+  .productCardOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 
-.productCardImage {
-  width: 100%;
-  height: 290px;
-  object-fit: contain;
-}
+  .productCardImage {
+    width: 100%;
+    height: 290px;
+    object-fit: contain;
+  }
 
-.productCardTitle {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px;
-  color: white;
-  text-align: center;
-  background-color: rgba(192, 56, 56, 0.801);
-  font-size: 18px;
-  font-weight: bold;
-}
+  .productCardTitle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    background-color: rgba(192, 56, 56, 0.801);
+    font-size: 18px;
+    font-weight: bold;
+  }
 
   &.whiskys {
     background-color: #a94007;
@@ -100,36 +103,36 @@ width: 17rem;
 `;
 
 export const Productos = () => {
-    return (
-        <ProductWrapper>
-            <Row>
-                <div className="containerProduct">
-                    <Link to="/whiskys" className="containerProductBox">
-                        <ProductCard as="div" border="warning" className="whiskys">
-                            <Card.Title className="productCardTitle">Whiskys</Card.Title>
-                            <div className="productCardOverlay">
-                                <Card.Img src={ImgWhisky} className="productCardImage" />
-                            </div>
-                        </ProductCard>
-                    </Link>
-                    <Link to="/vinos" className="containerProductBox">
-                        <ProductCard as="div" border="danger" className="vinos">
-                            <Card.Title className="productCardTitle">Vinos</Card.Title>
-                            <div className="productCardOverlay">
-                                <Card.Img src={Vinos} className="productCardImage" />
-                            </div>
-                        </ProductCard>
-                    </Link>
-                    <Link to="/licores" className="containerProductBox">
-                        <ProductCard as="div" border="info" className="licores">
-                            <Card.Title className="productCardTitle">Licores</Card.Title>
-                            <div className="productCardOverlay">
-                                <Card.Img src={Licores} className="productCardImage" />
-                            </div>
-                        </ProductCard>
-                    </Link>
-                </div>
-            </Row>
-        </ProductWrapper>
-    );
+  return (
+    <ProductWrapper>
+      <Row>
+        <div className="containerProduct">
+          <Link to="/whiskys" className="containerProductBox">
+            <ProductCard as="div" className="whiskys">
+              <Card.Title className="productCardTitle">Whiskys</Card.Title>
+              <div className="productCardOverlay">
+                <Card.Img src={ImgWhisky} className="productCardImage" />
+              </div>
+            </ProductCard>
+          </Link>
+          <Link to="/vinos" className="containerProductBox">
+            <ProductCard as="div" className="vinos">
+              <Card.Title className="productCardTitle">Vinos</Card.Title>
+              <div className="productCardOverlay">
+                <Card.Img src={Vinos} className="productCardImage" />
+              </div>
+            </ProductCard>
+          </Link>
+          <Link to="/licores" className="containerProductBox">
+            <ProductCard as="div" className="licores">
+              <Card.Title className="productCardTitle">Licores</Card.Title>
+              <div className="productCardOverlay">
+                <Card.Img src={Licores} className="productCardImage" />
+              </div>
+            </ProductCard>
+          </Link>
+        </div>
+      </Row>
+    </ProductWrapper>
+  );
 };
