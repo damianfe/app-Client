@@ -84,3 +84,11 @@ export const toggleFavoriteService = async (idDrink) => {
         throw error.response.data
     }
 }
+export const resetPassword = async (token, password) => {
+    try {
+      const response = await axios.post('/api/reset-password', { token, password });
+      return response.data.message;
+    } catch (error) {
+      throw new Error('Error al restablecer la contraseña');
+    }
+  };

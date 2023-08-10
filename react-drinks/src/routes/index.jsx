@@ -10,6 +10,7 @@ import { Whiskyes } from "../pages/Products/Whiskys";
 import { Vinos } from "../pages/Products/Vinos";
 import { Licores } from "../pages/Products/Licores";
 import {ForgotPassword} from '../pages/User/Forgot'
+import ResetPassword from "../pages/User/Reset";
 
 
 
@@ -21,6 +22,7 @@ export default function AppRoutes() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/forgotpass' element={<ForgotPassword/>} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="/user" element={<ProtectedRoutes />}>
                 <Route path='profile' element={<Profile />} />
             </Route>
