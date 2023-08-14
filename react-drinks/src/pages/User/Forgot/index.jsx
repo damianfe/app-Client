@@ -1,6 +1,8 @@
 import { Formik, Field, ErrorMessage } from 'formik';
 import { Form, Button, } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 import * as Yup from 'yup';
+import { resetPassword } from '../../../services/auth.service';
 // Otras importaciones y configuraciones
 
  export const ForgotPassword = () => {
@@ -12,10 +14,26 @@ import * as Yup from 'yup';
     email: Yup.string().email('Ingresa un correo electrónico válido').required('El correo electrónico es requerido'),
   });
 
-  const handleSubmit = (values) => {
-    // Aquí puedes enviar una solicitud al servidor para enviar el correo electrónico con el enlace de restablecimiento de contraseña.
-    console.log('Enviar correo electrónico para restablecer contraseña:', values.email);
-  };
+const handleSubmit = async (values, { setSubmitting, setStatus }) => {
+  try {
+    // Envia una solicitud al servidor para enviar el correo electrónico con el enlace de restablecimiento de contraseña
+    await resetPassword(values.email);
+    setStatus({ success: true }); // Actualiza el estado para mostrar un mensaje de éxito
+
+    // Muestra una alerta de éxito con SweetAlert
+    Swal.fire({
+      icon: 'success',
+      title: 'Correo enviado',
+      text: 'Se ha enviado un correo con las instrucciones para restablecer la contraseña.',
+    });
+
+  } catch (error) {
+    setStatus({ error: error.message }); // Actualiza el estado para mostrar un mensaje de error
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
   return (
     <Formik

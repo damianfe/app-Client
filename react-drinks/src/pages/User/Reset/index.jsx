@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { resetPassword } from '../../../services/auth.service'; // Importa el servicio
 
-const ResetPassword = () => {
+ export const ResetPassword = () => {
     const { token } = useParams();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -58,4 +58,4 @@ const ResetPassword = () => {
     );
 };
 
-export default ResetPassword;
+
