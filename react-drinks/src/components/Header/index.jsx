@@ -1,116 +1,188 @@
 import { useState } from "react";
 import { CartCanvas } from "../CartCanvas";
-import styles from "./Header.module.css";
-import { Badge, Button, Container } from "react-bootstrap";
 import useCart from "../../hooks/useCart";
 import { Link } from "react-router-dom";
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Card } from "react-bootstrap";
 import useAuth from "../../hooks/authProvider";
-import Logo from '../../../public/drink-lg.png'
+import Logo from '../../../public/drink-lg.png';
+import Button from "@mui/material/Button";
+import Badge from "@mui/material/Badge";
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 export default function Header() {
-
   const [showCart, setShowCart] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false); // Definir el estado para el menú móvil
 
-  const handleShowCart = () => setShowCart(true)
-  const handleCloseCart = () => setShowCart(false)
+  const handleShowCart = () => setShowCart(true);
+  const handleCloseCart = () => setShowCart(false);
 
-  const { cart } = useCart()
-  const { user, logout } = useAuth()
+  const { cart } = useCart();
+  const { user, logout } = useAuth();
+
   const handleLogout = () => {
-    logout()
-  }
+    logout();
+  };
 
   return (
-    <>
-      <header className={`d-flex justify-content-between p-3 ${styles.header}`}>
+    <header className="flex items-center justify-between p-4 bg-customRed shadow-md">
+      {/* Logo */}
+      <Link to="/" className="flex items-center" aria-label="Inicio">
+        <img
+          src={Logo}
+          alt="Logo"
+          className="w-20 h-auto md:w-24 lg:w-28"
+        />
+      </Link>
 
-        <Link to={"/"} className="nav-link">
-          <Card.Img
-            variant='top'
-            src={Logo}
-            alt={`imagen de ${Logo}`}
-            style={{ width: "20%", borderRadius: "25px" }}
-          /></Link>
-
-        <div className=''>
-          <Navbar expand="lg" className="navbarContent">
-            <Container fluid>
-              <Navbar.Brand as={Link} to="/productos" style={{
-                color: "white",
-                textShadow: "2px 2px 4px black"
-              }}>Productos</Navbar.Brand>
-              <Navbar.Toggle aria-controls="navbarScroll" />
-              <Navbar.Collapse id="navbarScroll">
-                <Nav
-                  className="me-auto my-2 my-lg-0"
-                  style={{ maxHeight: '100px' }}
-                  navbarScroll
-                >
-                  <NavDropdown title="¿Qué buscás?" id="navbarScrollingDropdown" >
-                    <NavDropdown.Item as={Link} to="/whiskys">Whiskys</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/vinos">Vinos</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/licores">Licores</NavDropdown.Item>
-                  </NavDropdown>
-                  <NavDropdown title="Usuarios" id="navbarScrollingDropdown">
-                    <NavDropdown.Item as={Link} to="/login">
-                      Ingresá
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/register">
-                      Registrate
-                    </NavDropdown.Item>
-                   
-                  </NavDropdown>
-
-                </Nav>
-
-
-
-
-                <CartCanvas showCart={showCart} handleCloseCart={handleCloseCart} />
-
-                <div className="d-flex gap-2">
-                  {
-                    user ?
-                      (
-                        <div className="d-flex gap-2">
-
-                          <Link to={"/user/profile"} className="btn btn-lg btn-outline-light d-flex gap-2 align-items-center">
-                            <i className="fa-solid fa-user"></i>
-                            <span>{user.name}</span>
-                          </Link>
-
-                          <Button onClick={handleLogout} variant="outline-light" size="lg">
-                            <i className="fa-solid fa-right-to-bracket"></i>
-                          </Button>
-                        </div>
-                      ) : (
-                        <>
-                          <Link to={"/login"} className="btn btn-lg btn-outline-light">
-                            <i className="fa-solid fa-right-to-bracket"></i>
-                          </Link>
-                          <Link to={"/register"} className="btn btn-lg btn-outline-light">
-                            <i className="fa-solid fa-user-plus"></i>
-                          </Link>
-                        </>
-                      )
-                  }
-
-                </div>
-                <div className="position-relative">
-                  <Button variant="outline-light" size="lg" onClick={handleShowCart}>
-                    <i className="fa-solid fa-cart-shopping "></i>
-                  </Button>
-                  <Badge className="position-absolute top-50 start-50" pill bg="dark" >{cart.length}</Badge>
-                </div>
-
-              </Navbar.Collapse>
-            </Container>
-          </Navbar>
+      {/* Menú de Navegación */}
+      <nav className="hidden lg:flex space-x-6">
+        <Link
+          to="/productos"
+          className="text-customWhite text-shadow-black hover:text-blue-600"
+          aria-label="Productos"
+        >
+          Productos
+        </Link>
+        <div className="relative">
+          <button
+            aria-label="Explorar categorías"
+            className="text-customWhite text-shadow-black hover:text-blue-600"
+          >
+            ¿Qué buscás?
+          </button>
+          <div className="absolute left-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded-lg p-2">
+            <Link
+              to="/whiskys"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              aria-label="Whiskys"
+            >
+              Whiskys
+            </Link>
+            <Link
+              to="/vinos"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              aria-label="Vinos"
+            >
+              Vinos
+            </Link>
+            <Link
+              to="/licores"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              aria-label="Licores"
+            >
+              Licores
+            </Link>
+          </div>
         </div>
-      </header>
-    </>
+        <div className="relative">
+          <button
+            aria-label="Opciones de usuario"
+            className="text-customWhite text-shadow-black hover:text-blue-600"
+          >
+            Usuarios
+          </button>
+          <div className="absolute left-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded-lg p-2">
+            <Link
+              to="/login"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              aria-label="Ingresá"
+            >
+              Ingresá
+            </Link>
+            <Link
+              to="/register"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              aria-label="Registrate"
+            >
+              Registrate
+            </Link>
+          </div>
+        </div>
+      </nav>
+
+      {/* Iconos y Botones */}
+      <div className="flex items-center space-x-4">
+        <CartCanvas showCart={showCart} handleCloseCart={handleCloseCart} />
+
+        {user ? (
+          <div className="flex items-center space-x-4">
+            <Link to="/user/profile" className="text-customWhite text-shadow-black hover:text-blue-600" aria-label="Perfil">
+              <IconButton>
+                <AccountCircleIcon />
+                <span className="text-customWhite text-shadow-black ml-1 hidden md:inline">{user.name}</span>
+              </IconButton>
+            </Link>
+            <Button
+              onClick={handleLogout}
+              variant="outlined"
+              startIcon={<LogoutIcon />}
+              className="text-customWhite text-shadow-black hover:bg-gray-100"
+              aria-label="Cerrar sesión"
+            >
+              Cerrar sesion
+            </Button>
+          </div>
+        ) : (
+          <div className="flex space-x-2">
+            <Link to="/login" aria-label="Iniciar sesión">
+              <Button variant="outlined" className="text-customWhite text-shadow-black hover:bg-gray-100">
+                <i className="fa-solid fa-right-to-bracket"></i>
+              </Button>
+            </Link>
+            <Link to="/register" aria-label="Registrarse">
+              <Button variant="outlined" className="text-gray-800 border-gray-800 hover:bg-gray-100">
+                <i className="fa-solid fa-user-plus"></i>
+              </Button>
+            </Link>
+          </div>
+        )}
+
+        <div className="relative">
+          <IconButton onClick={handleShowCart} aria-label="Ver carrito">
+            <ShoppingCartIcon />
+          </IconButton>
+          <Badge
+            badgeContent={cart.length}
+            color="primary"
+            className="absolute -top-2 -right-2"
+          />
+        </div>
+      </div>
+
+      {/* Menú Móvil */}
+      <div className="lg:hidden">
+        <button
+          onClick={() => setIsNavOpen(!isNavOpen)}
+          className="text-gray-800"
+          aria-label="Abrir menú"
+        >
+          <i className="fa-solid fa-bars"></i>
+        </button>
+        {isNavOpen && (
+          <nav className="absolute right-0 mt-2 w-full bg-white shadow-lg rounded-lg p-4">
+            <Link to="/productos" className="block px-4 py-2 text-gray-700 hover:bg-gray-100" aria-label="Productos">
+              Productos
+            </Link>
+            <Link to="/whiskys" className="block px-4 py-2 text-gray-700 hover:bg-gray-100" aria-label="Whiskys">
+              Whiskys
+            </Link>
+            <Link to="/vinos" className="block px-4 py-2 text-gray-700 hover:bg-gray-100" aria-label="Vinos">
+              Vinos
+            </Link>
+            <Link to="/licores" className="block px-4 py-2 text-gray-700 hover:bg-gray-100" aria-label="Licores">
+              Licores
+            </Link>
+            <Link to="/login" className="block px-4 py-2 text-gray-700 hover:bg-gray-100" aria-label="Ingresá">
+              Ingresá
+            </Link>
+            <Link to="/register" className="block px-4 py-2 text-gray-700 hover:bg-gray-100" aria-label="Registrate">
+              Registrate
+            </Link>
+          </nav>
+        )}
+      </div>
+    </header>
   );
 }
