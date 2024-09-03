@@ -128,12 +128,12 @@ export default function Header() {
           <div className="flex space-x-2">
             <Link to="/login" aria-label="Iniciar sesión">
               <Button variant="outlined" className="text-customWhite text-shadow-black hover:bg-gray-100">
-                <i className="fa-solid fa-right-to-bracket"></i>
+                <i className="fa-solid fa-right-to-bracket">Login</i>
               </Button>
             </Link>
             <Link to="/register" aria-label="Registrarse">
               <Button variant="outlined" className="text-gray-800 border-gray-800 hover:bg-gray-100">
-                <i className="fa-solid fa-user-plus"></i>
+                <i className="fa-solid fa-user-plus">Registro</i>
               </Button>
             </Link>
           </div>
