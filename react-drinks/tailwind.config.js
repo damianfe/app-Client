@@ -8,7 +8,8 @@ export const theme = {
     colors: {
      
       customRed: '#b6151080',
-      customWhite: '#ffffff'
+      customWhite: '#ffffff',
+      customOrange: '#F36541'
     },
   },
 };

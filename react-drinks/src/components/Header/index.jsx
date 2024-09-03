@@ -40,7 +40,7 @@ export default function Header() {
       <nav className="hidden lg:flex space-x-6">
         <Link
           to="/productos"
-          className="text-customWhite text-shadow-black hover:text-blue-600"
+          className="text-customWhite text-shadow-black hover:text-customOrange"
           aria-label="Productos"
         >
           Productos
@@ -48,7 +48,7 @@ export default function Header() {
         <div className="relative">
           <button
             aria-label="Explorar categorías"
-            className="text-customWhite text-shadow-black hover:text-blue-600"
+            className="text-customWhite text-shadow-black hover:text-customOrange"
           >
             ¿Qué buscás?
           </button>
@@ -79,7 +79,7 @@ export default function Header() {
         <div className="relative">
           <button
             aria-label="Opciones de usuario"
-            className="text-customWhite text-shadow-black hover:text-blue-600"
+            className="text-customWhite text-shadow-black hover:text-customOrange"
           >
             Usuarios
           </button>
