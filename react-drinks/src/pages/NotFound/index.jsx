@@ -1,16 +1,18 @@
-import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function NotFound() {
   return (
-    <Container style={{ backgroundColor: "red" }}>
-      <Row>
-        <Col md={6} className="mx-auto">
-          <h1 className="text-center">404</h1>
-          <p className="text-center">Page not found</p>
-        <Link to={'/'}>Volver al inicio</Link>
-        </Col>
-      </Row>
-    </Container>
+    <div className="flex items-center justify-center min-h-screen bg-red-500">
+      <div className="text-center">
+        <h1 className="text-6xl font-bold text-white">404</h1>
+        <p className="text-lg text-white mb-4">Page not found</p>
+        <Link 
+          to={'/'}
+          className="text-blue-500 hover:underline"
+        >
+          Volver al inicio
+        </Link>
+      </div>
+    </div>
   );
 }
